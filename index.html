@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ViewerCoin - We Pay Viewers to Watch Their Views</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>ViewerCoin - Revolutionizing the Creator Economy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-purple: #8B5CF6;
             --secondary-purple: #A78BFA;
-            --dark-purple: #6B46C1;
+            --dark-purple: #5B21B6;
             --light-purple: #E9D5FF;
             --white: #FFFFFF;
-            --dark: #1A1A2E;
-            --gray: #64748B;
+            --dark-bg: #0F0F1A;
+            --card-bg: #1A1A2E;
+            --gray: #94A3B8;
+            --green: #10B981;
+            --red: #EF4444;
         }
 
         * {
@@ -22,468 +25,678 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--white);
-            background-color: var(--dark);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
         }
 
-        /* Header */
-        header {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: background 0.3s ease;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-purple);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-purple);
-        }
-
-        .buy-btn {
-            background: var(--primary-purple);
-            color: var(--white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .buy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
-        }
-
-        /* Contract Address */
-        .contract-address {
-            background: var(--dark-purple);
-            padding: 0.5rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--light-purple);
-            max-width: 1200px;
-            margin: 0 auto;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-        }
-
-        .contract-address span {
-            font-family: monospace;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .copy-btn {
-            background: var(--primary-purple);
-            color: var(--white);
-            border: none;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background 0.3s ease;
-        }
-
-        .copy-btn:hover {
-            background: var(--secondary-purple);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
-            padding: 180px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, var(--white), var(--light-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: var(--light-purple);
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .cta-primary {
-            background: var(--white);
-            color: var(--primary-purple);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background: var(--dark);
-            text-align: center;
-        }
-
+        /* --- Global Styles --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-purple);
+        section {
+            padding: 120px 0;
         }
 
-        .about p {
-            font-size: 1.1rem;
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary-purple), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.15rem;
             color: var(--gray);
-            max-width: 800px;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        /* --- Header --- */
+        header {
+            background: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1rem 2rem;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background: var(--light-purple);
-            color: var(--dark);
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+        .logo span { color: var(--primary-purple); }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
         }
 
-        .features h2 {
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--primary-purple); }
+
+        .nav-actions { display: flex; align-items: center; gap: 1rem; }
+        .social-icon { color: var(--gray); text-decoration: none; transition: all 0.3s ease; }
+        .social-icon:hover { color: var(--primary-purple); transform: translateY(-2px); }
+        .social-icon svg { width: 24px; height: 24px; }
+        
+        .buy-btn {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 220px 0 120px;
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--dark-purple);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #1a0f2b 100%);
+        }
+        .hero-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(91, 33, 182, 0.4) 0%, rgba(91, 33, 182, 0) 60%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 8s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
         }
 
+        .hero-content { position: relative; z-index: 2; }
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--white), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--gray);
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contract-address {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--light-purple);
+            max-width: 550px;
+            margin: 2.5rem auto 0;
+            border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .contract-address span { font-family: monospace; }
+        .copy-btn {
+            background: var(--primary-purple);
+            color: var(--white); border: none; padding: 0.5rem 1rem;
+            border-radius: 8px; cursor: pointer; transition: background 0.3s ease;
+        }
+        .copy-btn:hover { background: var(--secondary-purple); }
+
+        /* --- Live Data Bar --- */
+        .live-data-bar {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: -80px auto 0;
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .live-metric { text-align: center; }
+        .live-metric .label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .live-metric .value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .live-metric .value.positive { color: var(--green); }
+        .live-metric .value.negative { color: var(--red); }
+
+        /* --- Features Section --- */
+        .features { background: var(--dark-bg); }
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-
         .feature-card {
-            background: var(--white);
-            padding: 2rem;
+            background: var(--card-bg);
+            padding: 2.5rem 2rem;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .feature-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 92, 246, 0.1);
         }
-
+        .feature-card .icon {
+            background: var(--primary-purple);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+        .feature-card .icon svg { width: 32px; height: 32px; }
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            color: var(--white);
+        }
+        .feature-card p { color: var(--gray); }
+
+        /* --- How to Buy Section --- */
+        #buy { background: var(--dark-bg); }
+        .how-to-buy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .step-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        .step-card .step-number {
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--primary-purple);
+            border: 2px solid var(--primary-purple);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
         }
+        .step-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .step-card p { font-size: 0.95rem; color: var(--gray); }
 
-        .feature-card p {
-            color: var(--gray);
+        /* --- Tokenomics Section --- */
+        #tokenomics { background: var(--card-bg); }
+        .tokenomics-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
         }
+        .pie-chart {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #8B5CF6 0% 50%,     /* Liquidity */
+                #A78BFA 50% 70%,    /* Rewards */
+                #6B46C1 70% 85%,    /* Marketing */
+                #5B21B6 85% 95%,    /* Team */
+                #E9D5FF 95% 100%    /* Development */
+            );
+            flex-shrink: 0;
+        }
+        .token-info ul {
+            list-style: none;
+            max-width: 400px;
+        }
+        .token-info li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .token-info .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+        .token-info .label { font-weight: 600; }
+        .token-info .percentage { color: var(--gray); margin-left: auto; }
 
-        /* Footer */
+        /* --- Roadmap Section --- */
+        #roadmap { background: var(--dark-bg); }
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .roadmap-timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--card-bg);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        .roadmap-item {
+            padding: 10px 40px;
+            position: relative;
+            background: inherit;
+            width: 50%;
+        }
+        .roadmap-item.left { left: 0; }
+        .roadmap-item.right { left: 50%; }
+        .roadmap-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: var(--primary-purple);
+            border: 4px solid var(--dark-bg);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .right::after { left: -10px; }
+        .roadmap-content {
+            padding: 20px 30px;
+            background: var(--card-bg);
+            position: relative;
+            border-radius: 10px;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+        .roadmap-content h3 { color: var(--primary-purple); }
+        .roadmap-content p { color: var(--gray); font-size: 0.9rem; }
+        .roadmap-content .status {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--green);
+            margin-top: 0.5rem;
+        }
+        
+        /* --- Footer --- */
         footer {
-            background: var(--dark-purple);
+            background: var(--card-bg);
             padding: 50px 0 20px;
             text-align: center;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
         }
-
         .footer-content {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto 2rem;
-            padding: 0 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-purple);
-        }
-
+        .footer-socials { display: flex; gap: 1.5rem; }
         .footer-bottom {
-            border-top: 1px solid var(--secondary-purple);
-            padding-top: 1rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            padding-top: 1.5rem;
             color: var(--gray);
+            font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* --- Scroll Animations --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+            .tokenomics-content { flex-direction: column; gap: 3rem; }
+        }
+        
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-content {
-                flex-direction: column;
-            }
-
-            .contract-address {
-                flex-direction: column;
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .contract-address span {
-                word-break: break-all;
-            }
-        }
-
-        /* Live Data Mock */
-        .live-data {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .live-metric {
-            display: inline-block;
-            margin: 0 1rem;
-            font-weight: 600;
+            .hero h1 { font-size: 2.8rem; }
+            .live-data-bar { flex-direction: column; }
+            .live-metric .value { font-size: 1.5rem; }
+            .roadmap-timeline::after { left: 20px; }
+            .roadmap-item { width: 100%; padding-left: 60px; padding-right: 15px; }
+            .roadmap-item.left, .roadmap-item.right { left: 0; }
+            .roadmap-item::after { left: 13px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header>
         <nav>
-            <div class="logo">ViewerCoin</div>
+            <a href="#home" class="logo">Viewer<span>Coin</span></a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#features">Features</a></li>
+                <li><a href="#buy">How to Buy</a></li>
                 <li><a href="#tokenomics">Tokenomics</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
             </ul>
-            <a href="#buy" class="buy-btn">Buy $VIEWER</a>
+            <div class="nav-actions">
+                <a href="https://x.com/i/communities/1966877792609468683" target="_blank" class="social-icon" aria-label="X Community">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                </a>
+                <a href="https://dexscreener.com/solana/FGPsBfhwfkmnZ8wXVEnCyWejEzhRZoWgiyozdqvdH9U9" target="_blank" class="social-icon" aria-label="DexScreener">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3.385 2.533 12 12l8.615-9.467L12 1.065Zm17.23 1.062L12 12l8.615 9.467L12 22.935Zm-17.23 0L12 12 3.385 21.467 12 22.935ZM12 12l-8.615 9.467L12 1.065l8.615 20.402Z"></path></svg>
+                </a>
+                <a href="#" target="_blank" class="social-icon" aria-label="Telegram">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.17.9-.49 1.2-.82 1.23-.69.06-1.22-.46-1.9-.91-1.06-.69-1.65-1.11-2.67-1.78-.99-.65-1.74-.99-1.5-.04-2.03.6-3.06.97-4.24 1.38-1.51.52-2.83.26-3.3-.92-.33-.8-.06-1.61.68-2.15 1.59-1.12 7.56-4.8 8.38-5.32z"></path></svg>
+                </a>
+                <a href="#buy" class="buy-btn">Buy $VIEWER</a>
+            </div>
         </nav>
-        <div class="contract-address">
-            <span>CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump</span>
-            <button class="copy-btn" onclick="copyContractAddress()">Copy</button>
-        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>ViewerCoin</h1>
-            <p>We pay viewers to watch their views. Revolutionizing the creator economy by rewarding engagement directly.</p>
-            <div class="cta-buttons">
-                <a href="#buy" class="cta-btn cta-primary">Get Started</a>
-                <a href="#about" class="cta-btn cta-secondary">Learn More</a>
-            </div>
-            <!-- Mock Live Data -->
-            <div class="live-data">
-                <div class="live-metric">Price: $0.05</div>
-                <div class="live-metric">Market Cap: $5M</div>
-                <div class="live-metric">Viewers Rewarded: 1M+</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About ViewerCoin</h2>
-            <p>ViewerCoin is the first token designed to empower viewers in the streaming world. Every view you contribute earns you $VIEWER tokens, turning passive watching into active earning. Inspired by the creator economy, we bridge the gap between viewers and rewards.</p>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Watch & Earn</h3>
-                    <p>Simply watch streams and accumulate views. Our smart contract automatically rewards you with $VIEWER tokens based on your engagement.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Stake Your Views</h3>
-                    <p>Stake your earned tokens to boost rewards or participate in governance. Help shape the future of viewer rewards.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Seamless Integration</h3>
-                    <p>Integrates with popular streaming platforms. Track your views and claim rewards effortlessly through our dashboard.</p>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-glow"></div>
+            <div class="hero-content container">
+                <h1>Watch. Earn. Revolutionize.</h1>
+                <p>ViewerCoin is the first token to reward you for what you already do. Turn your views into value and join the future of the creator economy.</p>
+                <div class="contract-address">
+                    <span>CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump</span>
+                    <button class="copy-btn" onclick="copyContractAddress()">Copy</button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Tokenomics Section (Placeholder) -->
-    <section id="tokenomics" class="about">
-        <div class="container">
-            <h2>Tokenomics</h2>
-            <p>Total Supply: 1,000,000,000 $VIEWER<br>
-            Allocation: 50% Liquidity, 20% Rewards, 15% Marketing, 10% Team, 5% Development<br>
-            100% of transaction fees go towards viewer rewards pool.</p>
+        <div class="live-data-bar container">
+            <div class="live-metric">
+                <div class="label">Price (USD)</div>
+                <div class="value" id="live-price">Loading...</div>
+            </div>
+            <div class="live-metric">
+                <div class="label">24h Change</div>
+                <div class="value" id="price-change">Loading...</div>
+            </div>
+            <div class="live-metric">
+                <div class="label">Market Cap</div>
+                <div class="value" id="market-cap">Loading...</div>
+            </div>
+            <div class="live-metric">
+                <div class="label">Liquidity</div>
+                <div class="value" id="liquidity">Loading...</div>
+            </div>
         </div>
-    </section>
 
-    <!-- Footer -->
+        <section id="features" class="features fade-in-section">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">A seamless ecosystem designed to empower viewers. Our platform is simple, powerful, and built for you.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></div>
+                        <h3>Watch & Earn</h3>
+                        <p>Simply connect your wallet and watch participating streams. Our protocol automatically tracks your engagement and rewards you with $VIEWER tokens.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                        <h3>Stake for More</h3>
+                        <p>Amplify your earnings by staking your $VIEWER tokens. Stakers receive a share of platform fees and gain governance rights to shape the future.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg></div>
+                        <h3>Seamless Integration</h3>
+                        <p>Our technology is built to integrate with major streaming platforms. Track your earnings and manage your assets through one intuitive dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="buy" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">How to Buy $VIEWER</h2>
+                <p class="section-subtitle">Ready to join the revolution? Follow these simple steps to get your first $VIEWER tokens.</p>
+                <div class="how-to-buy-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Get a Wallet</h3>
+                        <p>Download a Solana-compatible wallet like Phantom or Solflare from the app store or browser extension store.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Add SOL</h3>
+                        <p>Purchase SOL from a major exchange (like Coinbase or Binance) and send it to your new Solana wallet address.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Go to Raydium</h3>
+                        <p>Connect your wallet to a decentralized exchange like Raydium. Ensure you are on the official website.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>Swap for $VIEWER</h3>
+                        <p>Paste our token address, select SOL as your input, and swap for $VIEWER. Confirm the transaction in your wallet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tokenomics" class="tokenomics fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Tokenomics</h2>
+                <p class="section-subtitle">A balanced and sustainable token economy designed for long-term growth and community rewards.</p>
+                <div class="tokenomics-content">
+                    <div class="pie-chart"></div>
+                    <div class="token-info">
+                        <h3>Total Supply: 1,000,000,000 $VIEWER</h3>
+                        <ul>
+                            <li><span class="color-box" style="background: #8B5CF6;"></span><span class="label">Liquidity Pool</span><span class="percentage">50%</span></li>
+                            <li><span class="color-box" style="background: #A78BFA;"></span><span class="label">Viewer Rewards</span><span class="percentage">20%</span></li>
+                            <li><span class="color-box" style="background: #6B46C1;"></span><span class="label">Marketing & Partnerships</span><span class="percentage">15%</span></li>
+                            <li><span class="color-box" style="background: #5B21B6;"></span><span class="label">Team (Vested)</span><span class="percentage">10%</span></li>
+                            <li><span class="color-box" style="background: #E9D5FF;"></span><span class="label">Development Fund</span><span class="percentage">5%</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="roadmap" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Our Roadmap</h2>
+                <p class="section-subtitle">Our vision for the future is clear. Here are the key milestones on our journey to redefine viewer engagement.</p>
+                <div class="roadmap-timeline">
+                    <div class="roadmap-item left">
+                        <div class="roadmap-content">
+                            <h3>Phase 1: Launch</h3>
+                            <p>Project launch, token generation event (TGE), initial liquidity provisioning on Raydium, and community building.</p>
+                            <div class="status">✓ Completed</div>
+                        </div>
+                    </div>
+                    <div class="roadmap-item right">
+                        <div class="roadmap-content">
+                            <h3>Phase 2: Platform Alpha</h3>
+                            <p>Release of the alpha version of our rewards dashboard. Onboarding of first partner streamers.</p>
+                            <div class="status" style="color: var(--primary-purple);">● In Progress</div>
+                        </div>
+                    </div>
+                    <div class="roadmap-item left">
+                        <div class="roadmap-content">
+                            <h3>Phase 3: Staking & Governance</h3>
+                            <p>Launch of the $VIEWER staking protocol and the first community governance proposals.</p>
+                            <div class="status" style="color: var(--gray);">○ Upcoming</div>
+                        </div>
+                    </div>
+                     <div class="roadmap-item right">
+                        <div class="roadmap-content">
+                            <h3>Phase 4: Expansion</h3>
+                            <p>Integration with more streaming platforms, CEX listings, and global marketing campaigns.</p>
+                            <div class="status" style="color: var(--gray);">○ Upcoming</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
     <footer>
-        <div class="footer-content">
-            <div class="logo">ViewerCoin</div>
-            <div class="social-links">
-                <a href="#">Twitter</a>
-                <a href="#">Telegram</a>
-                <a href="#">Discord</a>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#home" class="logo">Viewer<span>Coin</span></a>
+                <div class="footer-socials">
+                    <a href="https://x.com/i/communities/1966877792609468683" target="_blank" class="social-icon" aria-label="X Community"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                    <a href="https://dexscreener.com/solana/FGPsBfhwfkmnZ8wXVEnCyWejEzhRZoWgiyozdqvdH9U9" target="_blank" class="social-icon" aria-label="DexScreener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M3.385 2.533 12 12l8.615-9.467L12 1.065Zm17.23 1.062L12 12l8.615 9.467L12 22.935Zm-17.23 0L12 12 3.385 21.467 12 22.935ZM12 12l-8.615 9.467L12 1.065l8.615 20.402Z"></path></svg></a>
+                    <a href="#" target="_blank" class="social-icon" aria-label="Telegram"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.17.9-.49 1.2-.82 1.23-.69.06-1.22-.46-1.9-.91-1.06-.69-1.65-1.11-2.67-1.78-.99-.65-1.74-.99-1.5-.04-2.03.6-3.06.97-4.24 1.38-1.51.52-2.83.26-3.3-.92-.33-.8-.06-1.61.68-2.15 1.59-1.12 7.56-4.8 8.38-5.32z"></path></svg></a>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 ViewerCoin. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ViewerCoin. All rights reserved. Not financial advice.</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // --- Live Price Tracking from DexScreener API ---
+        const pairAddress = 'FGPsBfhwfkmnZ8wXVEnCyWejEzhRZoWgiyozdqvdH9U9';
+        const apiUrl = `https://api.dexscreener.com/latest/dex/pairs/solana/${pairAddress}`;
+        const TOTAL_SUPPLY = 1000000000; // 1 Billion
 
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(26, 26, 46, 0.98)';
-            } else {
-                header.style.background = 'rgba(26, 26, 46, 0.95)';
+        async function fetchPriceData() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                const pair = data.pairs[0];
+
+                if (pair) {
+                    // Update Price
+                    const price = parseFloat(pair.priceUsd);
+                    document.getElementById('live-price').textContent = `$${price.toFixed(6)}`;
+
+                    // Update 24h Price Change
+                    const priceChange = pair.priceChange.h24;
+                    const priceChangeEl = document.getElementById('price-change');
+                    priceChangeEl.textContent = `${priceChange.toFixed(2)}%`;
+                    priceChangeEl.classList.toggle('positive', priceChange >= 0);
+                    priceChangeEl.classList.toggle('negative', priceChange < 0);
+
+                    // Update Liquidity
+                    const liquidity = pair.liquidity.usd;
+                    document.getElementById('liquidity').textContent = `$${(liquidity / 1000000).toFixed(2)}M`;
+
+                    // Calculate and Update Market Cap
+                    const marketCap = price * TOTAL_SUPPLY;
+                    document.getElementById('market-cap').textContent = `$${(marketCap / 1000000).toFixed(2)}M`;
+                }
+            } catch (error) {
+                console.error("Failed to fetch price data:", error);
+                // You can update the UI to show an error message here
             }
-        });
+        }
+        
+        // Fetch data on page load and then every 30 seconds
+        fetchPriceData();
+        setInterval(fetchPriceData, 30000);
 
-        // Copy contract address to clipboard
+
+        // --- Copy Contract Address ---
         function copyContractAddress() {
             const address = 'CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump';
             navigator.clipboard.writeText(address).then(() => {
                 const btn = document.querySelector('.copy-btn');
                 btn.textContent = 'Copied!';
-                setTimeout(() => {
-                    btn.textContent = 'Copy';
-                }, 2000);
+                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
             });
         }
 
-        // Mock live data update (for demo)
-        setInterval(() => {
-            const price = document.querySelector('.live-metric:nth-child(1)');
-            const currentPrice = parseFloat(price.textContent.split(': ')[1]);
-            price.textContent = `Price: $${(currentPrice + Math.random() * 0.01).toFixed(4)}`;
-        }, 5000);
+        // --- Scroll Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            rootMargin: '0px',
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
