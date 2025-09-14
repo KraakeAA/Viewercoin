@@ -17,6 +17,7 @@
             --gray: #94A3B8;
             --green: #10B981;
             --red: #EF4444;
+            --yellow: #FBBF24;
         }
 
         * {
@@ -66,15 +67,31 @@
             max-width: 700px;
             margin: 0 auto 4rem;
         }
+        
+        /* --- Rewards Tracker Bar --- */
+        .rewards-tracker {
+            background: var(--yellow);
+            color: var(--dark-bg);
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            width: 100%;
+            z-index: 1001;
+        }
+        .rewards-tracker span {
+            font-weight: 700;
+            margin-left: 0.5rem;
+        }
 
         /* --- Header --- */
         header {
             background: rgba(15, 15, 26, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            position: fixed;
-            width: 100%;
+            position: sticky; /* Changed from fixed for the top bar */
             top: 0;
+            width: 100%;
             z-index: 1000;
             transition: background 0.3s ease;
             border-bottom: 1px solid rgba(139, 92, 246, 0.2);
@@ -133,7 +150,8 @@
 
         /* --- Hero Section --- */
         .hero {
-            padding: 220px 0 120px;
+            padding-top: 100px; /* Adjusted padding */
+            padding-bottom: 120px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -174,23 +192,56 @@
             margin-right: auto;
         }
 
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .pump-btn {
+            background: var(--white);
+            color: var(--dark-purple);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .pump-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+        .pump-btn svg { width: 20px; height: 20px; }
+
         .contract-address {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem;
             font-size: 0.9rem;
             color: var(--light-purple);
             max-width: 550px;
-            margin: 2.5rem auto 0;
+            margin: 0 auto;
             border-radius: 12px;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: space-between; align-items: center; gap: 1rem;
             backdrop-filter: blur(5px);
         }
-        .contract-address span { font-family: monospace; }
+        .contract-address .ca-text {
+            font-family: monospace;
+            cursor: pointer;
+            text-align: left;
+            word-break: break-all; /* Ensures the CA fits */
+            transition: color 0.3s ease;
+        }
+        .contract-address .ca-text:hover { color: var(--white); }
         .copy-btn {
             background: var(--primary-purple);
             color: var(--white); border: none; padding: 0.5rem 1rem;
             border-radius: 8px; cursor: pointer; transition: background 0.3s ease;
+            flex-shrink: 0;
         }
         .copy-btn:hover { background: var(--secondary-purple); }
 
@@ -438,10 +489,15 @@
             .roadmap-item { width: 100%; padding-left: 60px; padding-right: 15px; }
             .roadmap-item.left, .roadmap-item.right { left: 0; }
             .roadmap-item::after { left: 13px; }
+            .contract-address { flex-direction: column; padding: 1rem; }
         }
     </style>
 </head>
 <body>
+
+    <div class="rewards-tracker">
+        🎉 Total Rewards Given Away: <span>$251</span> 🎉
+    </div>
 
     <header>
         <nav>
@@ -474,9 +530,15 @@
             <div class="hero-content container">
                 <h1>Watch. Earn. Revolutionize.</h1>
                 <p>ViewerCoin is the first token to reward you for what you already do. Turn your views into value and join the future of the creator economy.</p>
+                <div class="hero-buttons">
+                     <a href="https://pump.fun/coin/CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump" target="_blank" class="pump-btn">
+                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M15.042 3.5h-6.084L12 9.25zM12 20.5l-3.042-5.75h6.084zM16.458 13.25h-8.916L4.5 9.25l7.5 11.25 7.5-11.25z"></path></svg>
+                         View on Pump.fun
+                     </a>
+                </div>
                 <div class="contract-address">
-                    <span>CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump</span>
-                    <button class="copy-btn" onclick="copyContractAddress()">Copy</button>
+                    <span class="ca-text" onclick="copyContractAddress(this)">CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump</span>
+                    <button class="copy-btn" onclick="copyContractAddress(this)">Copy</button>
                 </div>
             </div>
         </section>
@@ -609,7 +671,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
@@ -655,30 +716,40 @@
 
                     // Update Liquidity
                     const liquidity = pair.liquidity.usd;
-                    document.getElementById('liquidity').textContent = `$${(liquidity / 1000000).toFixed(2)}M`;
+                    document.getElementById('liquidity').textContent = `$${(liquidity / 1000).toFixed(1)}K`;
 
                     // Calculate and Update Market Cap
-                    const marketCap = price * TOTAL_SUPPLY;
-                    document.getElementById('market-cap').textContent = `$${(marketCap / 1000000).toFixed(2)}M`;
+                    const marketCap = pair.fdv; // Using fully diluted valuation from API
+                    document.getElementById('market-cap').textContent = `$${(marketCap / 1000).toFixed(1)}K`;
                 }
             } catch (error) {
                 console.error("Failed to fetch price data:", error);
-                // You can update the UI to show an error message here
             }
         }
         
-        // Fetch data on page load and then every 30 seconds
         fetchPriceData();
         setInterval(fetchPriceData, 30000);
 
-
         // --- Copy Contract Address ---
-        function copyContractAddress() {
+        function copyContractAddress(element) {
             const address = 'CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump';
             navigator.clipboard.writeText(address).then(() => {
                 const btn = document.querySelector('.copy-btn');
+                const originalBtnText = btn.textContent;
                 btn.textContent = 'Copied!';
-                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+                
+                // If the text itself was clicked, provide feedback there too
+                if(element.classList.contains('ca-text')) {
+                    const originalCaText = element.textContent;
+                    element.textContent = 'Copied to clipboard!';
+                    setTimeout(() => { 
+                        element.textContent = originalCaText;
+                    }, 2000);
+                }
+
+                setTimeout(() => { 
+                    btn.textContent = originalBtnText;
+                }, 2000);
             });
         }
 
@@ -689,10 +760,7 @@
                     entry.target.classList.add('is-visible');
                 }
             });
-        }, {
-            rootMargin: '0px',
-            threshold: 0.1
-        });
+        }, { rootMargin: '0px', threshold: 0.1 });
 
         document.querySelectorAll('.fade-in-section').forEach(section => {
             observer.observe(section);
