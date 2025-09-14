@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ViewerCoin - Revolutionizing the Creator Economy</title>
+    <meta name="description" content="ViewerCoin rewards you for watching content. Join the future of the creator economy with $VIEWER tokens on Solana.">
+    <meta name="keywords" content="ViewerCoin, Solana token, viewer rewards, cryptocurrency, creator economy">
+    <meta property="og:title" content="ViewerCoin - Watch. Earn. Revolutionize.">
+    <meta property="og:description" content="Turn your views into value with ViewerCoin, the first token to reward content viewers on Solana.">
+    <meta property="og:image" content="https://yourwebsite.com/images/viewercoin-og.jpg"> <!-- Replace with actual image URL -->
+    <meta property="og:url" content="https://yourwebsite.com"> <!-- Replace with actual website URL -->
+    <meta name="twitter:card" content="summary_large_image">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,9 +22,9 @@
             --dark-bg: #0F0F1A;
             --card-bg: #1A1A2E;
             --gray: #94A3B8;
-            --green: #10B981; /* Updated to green */
+            --green: #10B981;
             --red: #EF4444;
-            --accent-green: #34D399; /* A brighter green for the tracker */
+            --accent-green: #34D399;
         }
 
         * {
@@ -70,7 +77,7 @@
         
         /* --- Rewards Tracker Bar --- */
         .rewards-tracker {
-            background: var(--accent-green); /* Changed to green */
+            background: var(--accent-green);
             color: var(--dark-bg);
             text-align: center;
             padding: 0.6rem 1rem;
@@ -95,7 +102,7 @@
             width: 100%;
             z-index: 1000;
             transition: background 0.3s ease;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         nav {
@@ -109,21 +116,32 @@
         }
 
         .logo {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--white);
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: transform 0.3s ease;
+            text-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
         }
-        .logo span { color: var(--primary-purple); }
-        .logo img { height: 30px; } /* For a potential logo icon */
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo span {
+            color: var(--primary-purple);
+            background: linear-gradient(90deg, var(--primary-purple), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo img { height: 30px; }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2.5rem;
-            align-items: center; /* Align items in nav-links */
+            align-items: center;
         }
 
         .nav-links a {
@@ -134,14 +152,14 @@
         }
         .nav-links a:hover { color: var(--primary-purple); }
 
-        .social-icons-header { /* New container for social icons in header */
+        .social-icons-header {
             display: flex;
             gap: 1rem;
-            margin-left: 1.5rem; /* Space between regular links and social icons */
+            margin-left: 1.5rem;
         }
         .social-icon { color: var(--gray); text-decoration: none; transition: all 0.3s ease; }
         .social-icon:hover { color: var(--primary-purple); transform: translateY(-2px); }
-        .social-icon svg { width: 22px; height: 22px; } /* Slightly smaller icons */
+        .social-icon svg { width: 22px; height: 22px; }
         
         .buy-btn {
             background: var(--primary-purple);
@@ -152,11 +170,20 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-            margin-left: 1.5rem; /* Space between socials and buy button */
+            margin-left: 1.5rem;
         }
         .buy-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--white);
+            background: none;
+            border: none;
+            cursor: pointer;
         }
 
         /* --- Hero Section --- */
@@ -207,7 +234,7 @@
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-bottom: 2.5rem; /* Increased space below buttons */
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
         .pump-btn {
@@ -237,7 +264,10 @@
             max-width: 550px;
             margin: 0 auto;
             border-radius: 12px;
-            display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
             backdrop-filter: blur(5px);
         }
         .contract-address .ca-text {
@@ -246,14 +276,18 @@
             text-align: left;
             word-break: break-all;
             transition: color 0.3s ease;
-            flex-grow: 1; /* Allow text to take available space */
-            padding-left: 0.5rem; /* Padding for better click area */
+            flex-grow: 1;
+            padding-left: 0.5rem;
         }
         .contract-address .ca-text:hover { color: var(--white); }
         .copy-btn {
             background: var(--primary-purple);
-            color: var(--white); border: none; padding: 0.5rem 1rem;
-            border-radius: 8px; cursor: pointer; transition: background 0.3s ease;
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
             flex-shrink: 0;
         }
         .copy-btn:hover { background: var(--secondary-purple); }
@@ -373,11 +407,11 @@
             height: 300px;
             border-radius: 50%;
             background: conic-gradient(
-                #8B5CF6 0% 50%,     /* Liquidity */
-                #A78BFA 50% 84%,    /* Streamer Finance (50% + 34%) */
-                #6B46C1 84% 94%,    /* Marketing (84% + 10%) */
-                #5B21B6 94% 97%,    /* Team (94% + 3%) */
-                #E9D5FF 97% 100%    /* Development (97% + 3%) */
+                #8B5CF6 0% 50%,
+                #A78BFA 50% 84%,
+                #6B46C1 84% 94%,
+                #5B21B6 94% 97%,
+                #E9D5FF 97% 100%
             );
             flex-shrink: 0;
         }
@@ -488,26 +522,27 @@
         
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
-            .nav-links { 
-                display: none; /* Hide for mobile, can add a hamburger menu */
-                flex-direction: column; 
-                gap: 1rem; 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                width: 100%; 
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
                 background: rgba(15, 15, 26, 0.95);
                 border-top: 1px solid rgba(139, 92, 246, 0.2);
                 padding: 1rem 0;
+                text-align: center;
             }
-            .nav-links.active { display: flex; } /* To be controlled by JS for mobile menu */
-
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
             .logo { flex-grow: 1; }
             .hero h1 { font-size: 3.5rem; }
             .section-title { font-size: 2.5rem; }
             .tokenomics-content { flex-direction: column; gap: 3rem; }
-            .social-icons-header { display: none; } /* Hide on small screens to reduce clutter */
-            .buy-btn { margin-left: 0; } /* Remove extra margin on mobile */
+            .social-icons-header { display: none; }
+            .buy-btn { margin-left: 0; }
         }
         
         @media (max-width: 768px) {
@@ -519,9 +554,9 @@
             .roadmap-item.left, .roadmap-item.right { left: 0; }
             .roadmap-item::after { left: 13px; }
             .contract-address { flex-direction: column; padding: 1rem; }
-            .contract-address .ca-text { padding-left: 0; text-align: center; } /* Center text on small screens */
-            .hero-buttons { flex-direction: column; align-items: center; } /* Stack buttons vertically */
-            .pump-btn { width: 80%; max-width: 300px; } /* Adjust button width */
+            .contract-address .ca-text { padding-left: 0; text-align: center; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .pump-btn { width: 80%; max-width: 300px; }
             .rewards-tracker { font-size: 0.85rem; padding: 0.4rem 0.5rem; }
             .rewards-tracker span { font-size: 1rem; }
         }
@@ -536,6 +571,7 @@
     <header>
         <nav>
             <a href="#home" class="logo">Viewer<span>Coin</span></a>
+            <button class="menu-toggle" id="menu-toggle">☰</button>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
@@ -549,7 +585,7 @@
                     <a href="https://dexscreener.com/solana/FGPsBfhwfkmnZ8wXVEnCyWejEzhRZoWgiyozdqvdH9U9" target="_blank" class="social-icon" aria-label="DexScreener">
                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3.385 2.533 12 12l8.615-9.467L12 1.065Zm17.23 1.062L12 12l8.615 9.467L12 22.935Zm-17.23 0L12 12 3.385 21.467 12 22.935ZM12 12l-8.615 9.467L12 1.065l8.615 20.402Z"></path></svg>
                     </a>
-                    <a href="#" target="_blank" class="social-icon" aria-label="Telegram">
+                    <a href="https://t.me/viewercoin2" target="_blank" class="social-icon" aria-label="Telegram">
                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.17.9-.49 1.2-.82 1.23-.69.06-1.22-.46-1.9-.91-1.06-.69-1.65-1.11-2.67-1.78-.99-.65-1.74-.99-1.5-.04-2.03.6-3.06.97-4.24 1.38-1.51.52-2.83.26-3.3-.92-.33-.8-.06-1.61.68-2.15 1.59-1.12 7.56-4.8 8.38-5.32z"></path></svg>
                     </a>
                 </li>
@@ -565,10 +601,10 @@
                 <h1>Watch. Earn. Revolutionize.</h1>
                 <p>ViewerCoin is the first token to reward you for what you already do. Turn your views into value and join the future of the creator economy.</p>
                 <div class="hero-buttons">
-                     <a href="https://pump.fun/coin/CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump" target="_blank" class="pump-btn">
-                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M15.042 3.5h-6.084L12 9.25zM12 20.5l-3.042-5.75h6.084zM16.458 13.25h-8.916L4.5 9.25l7.5 11.25 7.5-11.25z"></path></svg>
-                         View on Pump.fun
-                     </a>
+                    <a href="https://pump.fun/coin/CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump" target="_blank" class="pump-btn">
+                        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M15.042 3.5h-6.084L12 9.25zM12 20.5l-3.042-5.75h6.084zM16.458 13.25h-8.916L4.5 9.25l7.5 11.25 7.5-11.25z"></path></svg>
+                        View on Pump.fun
+                    </a>
                 </div>
                 <div class="contract-address">
                     <span class="ca-text" onclick="copyContractAddress('CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump', this)">CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump</span>
@@ -637,8 +673,8 @@
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3>Go to Raydium</h3>
-                        <p>Connect your wallet to a decentralized exchange like Raydium. Ensure you are on the official website.</p>
+                        <h3>Go to Pump.fun</h3>
+                        <p>Connect your wallet to Pump.fun. Ensure you are on the official website (pump.fun).</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">4</div>
@@ -677,7 +713,7 @@
                     <div class="roadmap-item left">
                         <div class="roadmap-content">
                             <h3>Phase 1: Launch</h3>
-                            <p>Project launch, token generation event (TGE), initial liquidity provisioning on Raydium, and community building.</p>
+                            <p>Project launch, token generation event (TGE), initial liquidity provisioning on Pump.fun, and community building.</p>
                             <div class="status">✓ Completed</div>
                         </div>
                     </div>
@@ -695,7 +731,7 @@
                             <div class="status" style="color: var(--gray);">○ Upcoming</div>
                         </div>
                     </div>
-                     <div class="roadmap-item right">
+                    <div class="roadmap-item right">
                         <div class="roadmap-content">
                             <h3>Phase 4: Expansion</h3>
                             <p>Integration with more streaming platforms, CEX listings, and global marketing campaigns.</p>
@@ -714,7 +750,7 @@
                 <div class="footer-socials">
                     <a href="https://x.com/i/communities/1966877792609468683" target="_blank" class="social-icon" aria-label="X Community"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
                     <a href="https://dexscreener.com/solana/FGPsBfhwfkmnZ8wXVEnCyWejEzhRZoWgiyozdqvdH9U9" target="_blank" class="social-icon" aria-label="DexScreener"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M3.385 2.533 12 12l8.615-9.467L12 1.065Zm17.23 1.062L12 12l8.615 9.467L12 22.935Zm-17.23 0L12 12 3.385 21.467 12 22.935ZM12 12l-8.615 9.467L12 1.065l8.615 20.402Z"></path></svg></a>
-                    <a href="#" target="_blank" class="social-icon" aria-label="Telegram"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.17.9-.49 1.2-.82 1.23-.69.06-1.22-.46-1.9-.91-1.06-.69-1.65-1.11-2.67-1.78-.99-.65-1.74-.99-1.5-.04-2.03.6-3.06.97-4.24 1.38-1.51.52-2.83.26-3.3-.92-.33-.8-.06-1.61.68-2.15 1.59-1.12 7.56-4.8 8.38-5.32z"></path></svg></a>
+                    <a href="https://t.me/viewercoin2" target="_blank" class="social-icon" aria-label="Telegram"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.17.9-.49 1.2-.82 1.23-.69.06-1.22-.46-1.9-.91-1.06-.69-1.65-1.11-2.67-1.78-.99-.65-1.74-.99-1.5-.04-2.03.6-3.06.97-4.24 1.38-1.51.52-2.83.26-3.3-.92-.33-.8-.06-1.61.68-2.15 1.59-1.12 7.56-4.8 8.38-5.32z"></path></svg></a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -724,12 +760,15 @@
     </footer>
 
     <script>
+        // --- Hamburger Menu Toggle ---
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
         // --- Live Price Tracking from DexScreener API ---
         const pairAddress = 'FGPsBfhwfkmnZ8wXVEnCyWejEzhRZoWgiyozdqvdH9U9';
         const apiUrl = `https://api.dexscreener.com/latest/dex/pairs/solana/${pairAddress}`;
-        // Note: TOTAL_SUPPLY is often used for Market Cap if FDV isn't available or preferred.
-        // DexScreener API provides 'fdv' (Fully Diluted Valuation) which is generally more accurate for live data.
-        const TOTAL_SUPPLY = 1000000000; 
+        const TOTAL_SUPPLY = 1000000000;
 
         async function fetchPriceData() {
             try {
@@ -749,34 +788,35 @@
                     priceChangeEl.classList.toggle('negative', priceChange < 0);
 
                     const liquidity = pair.liquidity.usd;
-                    document.getElementById('liquidity').textContent = `$${(liquidity / 1000).toFixed(1)}K`; // Display in K
+                    document.getElementById('liquidity').textContent = `$${(liquidity / 1000).toFixed(1)}K`;
 
-                    const marketCap = pair.fdv; // Use FDV from API
-                    document.getElementById('market-cap').textContent = `$${(marketCap / 1000).toFixed(1)}K`; // Display in K
+                    const marketCap = pair.fdv;
+                    document.getElementById('market-cap').textContent = `$${(marketCap / 1000).toFixed(1)}K`;
+                } else {
+                    throw new Error('No pair data found');
                 }
             } catch (error) {
                 console.error("Failed to fetch price data:", error);
+                document.getElementById('live-price').textContent = 'N/A';
+                document.getElementById('price-change').textContent = 'N/A';
+                document.getElementById('market-cap').textContent = 'N/A';
+                document.getElementById('liquidity').textContent = 'N/A';
             }
         }
         
         fetchPriceData();
-        setInterval(fetchPriceData, 30000); // Update every 30 seconds
+        setInterval(fetchPriceData, 30000);
 
         // --- Copy Contract Address ---
         function copyContractAddress(address, element) {
             navigator.clipboard.writeText(address).then(() => {
                 const btn = element.closest('.contract-address').querySelector('.copy-btn');
-                const caTextSpan = element.closest('.contract-address').querySelector('.ca-text');
-
                 const originalBtnText = btn.textContent;
-                const originalCaText = caTextSpan.textContent;
 
                 btn.textContent = 'Copied!';
-                caTextSpan.textContent = 'Copied to clipboard!';
                 
-                setTimeout(() => { 
+                setTimeout(() => {
                     btn.textContent = originalBtnText;
-                    caTextSpan.textContent = originalCaText;
                 }, 2000);
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
