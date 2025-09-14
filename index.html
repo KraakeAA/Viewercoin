@@ -212,7 +212,7 @@
         }
 
         .hero-content { position: relative; z-index: 2; }
-        .hero h1 {
+        .hero-title {
             font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
@@ -220,6 +220,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .hero p {
             font-size: 1.25rem;
@@ -254,6 +261,40 @@
             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
         }
         .pump-btn svg { width: 20px; height: 20px; }
+
+        .buy-now-btn {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3) inset;
+            position: relative;
+            overflow: hidden;
+        }
+        .buy-now-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .buy-now-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .buy-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.7), 0 0 25px rgba(139, 92, 246, 0.4) inset;
+        }
 
         .contract-address {
             background: rgba(255, 255, 255, 0.05);
@@ -538,7 +579,7 @@
             .nav-links.active { display: flex; }
             .menu-toggle { display: block; }
             .logo { flex-grow: 1; }
-            .hero h1 { font-size: 3.5rem; }
+            .hero-title { font-size: 3.5rem; }
             .section-title { font-size: 2.5rem; }
             .tokenomics-content { flex-direction: column; gap: 3rem; }
             .social-icons-header { display: none; }
@@ -546,7 +587,7 @@
         }
         
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
+            .hero-title { font-size: 2.8rem; }
             .live-data-bar { flex-direction: column; }
             .live-metric .value { font-size: 1.5rem; }
             .roadmap-timeline::after { left: 20px; }
@@ -598,13 +639,14 @@
         <section id="home" class="hero">
             <div class="hero-glow"></div>
             <div class="hero-content container">
-                <h1>Watch. Earn. Revolutionize.</h1>
+                <h1 class="hero-title">ViewerCoin</h1>
                 <p>ViewerCoin is the first token to reward you for what you already do. Turn your views into value and join the future of the creator economy.</p>
                 <div class="hero-buttons">
                     <a href="https://pump.fun/coin/CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump" target="_blank" class="pump-btn">
                         <svg fill="currentColor" viewBox="0 0 24 24"><path d="M15.042 3.5h-6.084L12 9.25zM12 20.5l-3.042-5.75h6.084zM16.458 13.25h-8.916L4.5 9.25l7.5 11.25 7.5-11.25z"></path></svg>
                         View on Pump.fun
                     </a>
+                    <a href="https://dexscreener.com/solana/FGPsBfhwfkmnZ8wXVEnCyWejEzhRZoWgiyozdqvdH9U9" target="_blank" class="buy-now-btn">Buy Now</a>
                 </div>
                 <div class="contract-address">
                     <span class="ca-text" onclick="copyContractAddress('CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump', this)">CjJL9C3fEcBnbb4Jy5mmFGn42maXk4uuen6TR6pXpump</span>
